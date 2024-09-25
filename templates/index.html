@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - Tim Hortons Review Analysis</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #343a40;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #ratingDistribution, #wordCloud {
+            display: none;
+        }
+
+        img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        img {
+            width: 60%;
+            margin: 20px 0;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .list-group-item {
+            background-color: #fff;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+        }
+
+        body, h1, h2 {
+            background-color: #ffffff;
+        }
+
+        .container {
+            background-color: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-dark {
+            background-color: #343a40 !important;
+            color: white;
+        }
+
+        .comments-section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+    </style>
+
+    <script>
+        function toggleVisibility(id) {
+            const element = document.getElementById(id);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tim Hortons Review Analysis</h1>
+
+        <h2>Rating Distribution</h2>
+        <button class="btn btn-primary" onclick="toggleVisibility('ratingDistribution')">Show/Hide Rating Distribution</button>
+        <div id="ratingDistribution">
+            <img src="/rating-distribution" alt="Rating Distribution" class="img-fluid mt-3">
+        </div>
+
+        <h2>Word Cloud</h2>
+        <button class="btn btn-primary" onclick="toggleVisibility('wordCloud')">Show/Hide Word Cloud</button>
+        <div id="wordCloud">
+            <img src="/word-cloud" alt="Word Cloud" class="img-fluid mt-3">
+        </div>
+
+        <h2>Customer Comments</h2>
+        <button class="btn btn-primary btn-toggle" onclick="toggleVisibility('commentsContainer')">Show/Hide Comments</button>
+        <div id="commentsContainer" class="comments-section">
+            <ul class="list-group">
+                {% for comment in comments %}
+                    <li class="list-group-item">{{ comment }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+
+        const commentsContainer = document.getElementById('commentsContainer');
+        commentsData.forEach((comment, index) => {
+            const commentDiv = document.createElement('li');
+            commentDiv.classList.add('list-group-item');
+            commentDiv.innerHTML = `<strong>Comment ${index + 1}:</strong> ${comment}`;
+            commentsContainer.appendChild(commentDiv);
+        });
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
